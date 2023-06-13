@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://sinabnc:FIfa2018@cluster0.mbjfdqg.mongodb.net/todo");
+mongoose.connect(process.env.MONGODB_URL);
 
 const itemSchema={
   name:String
@@ -75,6 +75,8 @@ app.get("/about", function(req, res){
   res.render("about");
 });
 
-app.listen(process.env || 3000, function() {
+const PORT=process.env.PORT
+
+app.listen(PORT|| 3000, function() {
   console.log("Server started on port 3000");
 });
